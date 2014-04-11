@@ -1,1 +1,1 @@
-My solutions to "Algorithms 4ed" by Prof Rober.Sedgewick and Kevin Wayne
+My solutions to assignments associated in course "Algorithms" on coursera by Prof Robert.Sedgewick
