@@ -83,27 +83,7 @@ public class Percolation {
 		if (!isOpen(i, j)) {
 			return false;
 		}
-		// up
-		if ( checkValid(i - 1, j) && wquf.connected(vtop, xyTo1D(i - 1, j)) )
-		{
-			return true;
-		}
-		// down
-		if ( checkValid(i + 1, j) && wquf.connected(vtop, xyTo1D(i + 1, j)) )
-		{
-			return true;
-		}
-		// left
-		if ( checkValid(i, j - 1) && wquf.connected(vtop, xyTo1D(i, j - 1)) )
-		{
-			return true;
-		}
-		// right
-		if ( checkValid(i, j + 1) && wquf.connected(vtop, xyTo1D(i, j + 1)) )
-		{
-			return true;
-		}
-		return false;
+		return wquf.connected(vtop, xyTo1D(i, j));
 	}
 	
 	/**
