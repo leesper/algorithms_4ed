@@ -15,6 +15,7 @@ public class Percolation {
 		}
 		size = N;
 		wquf = new WeightedQuickUnionUF(size * size + 2);
+		backwash = new WeightedQuickUnionUF(size * size + 1);
 		// op[vtop] is virtual top and op[vbot] is virtual bottom
 		op = new boolean[size * size + 2];
 		vtop = 0;
@@ -34,7 +35,9 @@ public class Percolation {
 			op[vtop] = true;
 			// make sites in top row union to virtual top
 			wquf.union(vtop, xyTo1D(i, j));
+			backwash.union(vtop, xyTo1D(i, j));
 		}
+
 		if (isBotRow(i)) {
 			op[vbot] = true;
 			// make sites in bottom row union to virtual bottom
@@ -44,22 +47,26 @@ public class Percolation {
 		// up
 		if (checkValid(i - 1, j) && isOpen(i - 1, j) 
 				&& !wquf.connected(xyTo1D(i - 1, j), xyTo1D(i, j))) {
-			wquf.union( xyTo1D(i - 1, j), xyTo1D(i, j) );
+			wquf.union(xyTo1D(i - 1, j), xyTo1D(i, j));
+			backwash.union(xyTo1D(i - 1, j), xyTo1D(i, j));
 		}
 		// down
 		if (checkValid(i + 1, j) && isOpen(i + 1, j) 
-			&& !wquf.connected(xyTo1D(i + 1, j), xyTo1D(i, j))) {
-			wquf.union( xyTo1D(i + 1, j), xyTo1D(i, j) );
+				&& !wquf.connected(xyTo1D(i + 1, j), xyTo1D(i, j))) {
+			wquf.union(xyTo1D(i + 1, j), xyTo1D(i, j));
+			backwash.union(xyTo1D(i + 1, j), xyTo1D(i, j));
 		}
 		// left
 		if (checkValid(i, j - 1) && isOpen(i, j - 1)
-			&& !wquf.connected(xyTo1D(i, j - 1), xyTo1D(i, j))) {
-			wquf.union( xyTo1D(i, j - 1), xyTo1D(i, j) );
+				&& !wquf.connected(xyTo1D(i, j - 1), xyTo1D(i, j))) {
+			wquf.union(xyTo1D(i, j - 1), xyTo1D(i, j));
+			backwash.union(xyTo1D(i, j - 1), xyTo1D(i, j));
 		}
 		// right
 		if (checkValid(i, j + 1) && isOpen(i, j + 1)
-			&& !wquf.connected(xyTo1D(i, j + 1), xyTo1D(i, j))) {
-			wquf.union( xyTo1D(i, j + 1), xyTo1D(i, j) );
+				&& !wquf.connected(xyTo1D(i, j + 1), xyTo1D(i, j))) {
+			wquf.union(xyTo1D(i, j + 1), xyTo1D(i, j));
+			backwash.union(xyTo1D(i, j + 1), xyTo1D(i, j));
 		}
 	}
 	
@@ -83,7 +90,7 @@ public class Percolation {
 		if (!isOpen(i, j)) {
 			return false;
 		}
-		return wquf.connected(vtop, xyTo1D(i, j));
+		return backwash.connected(vtop, xyTo1D(i, j));
 	}
 	
 	/**
@@ -123,6 +130,7 @@ public class Percolation {
 	private final int vtop;
 	private final int vbot;
 	private WeightedQuickUnionUF wquf;
+	private WeightedQuickUnionUF backwash;
 	
 	public static void main(String[] args) {
 		In in = new In(args[0]);      // input file
