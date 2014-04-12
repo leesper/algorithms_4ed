@@ -25,7 +25,7 @@ public class Percolation {
 	 *   Open the (i, j) site in N-by-N grid.
 	 */
 	public void open(int i, int j) {
-		if ( isOpen(i, j) ) 
+		if (isOpen(i, j)) 
 			return;
 		
 		op[xyTo1D(i, j)] = true;
@@ -42,23 +42,23 @@ public class Percolation {
 		}
 
 		// up
-		if (checkValid(i - 1, j) && isOpen(i - 1, j) && 
-			!wquf.connected(xyTo1D(i - 1, j), xyTo1D(i, j))) {
+		if (checkValid(i - 1, j) && isOpen(i - 1, j) 
+				&& !wquf.connected(xyTo1D(i - 1, j), xyTo1D(i, j))) {
 			wquf.union( xyTo1D(i - 1, j), xyTo1D(i, j) );
 		}
 		// down
-		if (checkValid(i + 1, j) && isOpen(i + 1, j) &&
-			!wquf.connected(xyTo1D(i + 1, j), xyTo1D(i, j))) {
+		if (checkValid(i + 1, j) && isOpen(i + 1, j) 
+			&& !wquf.connected(xyTo1D(i + 1, j), xyTo1D(i, j))) {
 			wquf.union( xyTo1D(i + 1, j), xyTo1D(i, j) );
 		}
 		// left
-		if (checkValid(i, j - 1) && isOpen(i, j - 1) &&
-			!wquf.connected(xyTo1D(i, j - 1), xyTo1D(i, j))) {
+		if (checkValid(i, j - 1) && isOpen(i, j - 1)
+			&& !wquf.connected(xyTo1D(i, j - 1), xyTo1D(i, j))) {
 			wquf.union( xyTo1D(i, j - 1), xyTo1D(i, j) );
 		}
 		// right
-		if (checkValid(i, j + 1) && isOpen(i, j + 1) &&
-			!wquf.connected(xyTo1D(i, j + 1), xyTo1D(i, j))) {
+		if (checkValid(i, j + 1) && isOpen(i, j + 1)
+			&& !wquf.connected(xyTo1D(i, j + 1), xyTo1D(i, j))) {
 			wquf.union( xyTo1D(i, j + 1), xyTo1D(i, j) );
 		}
 	}
@@ -138,11 +138,11 @@ public class Percolation {
 		return i == size;
 	}
 	
-	private WeightedQuickUnionUF wquf;
 	private final int size;
 	private boolean[] op; // mark whether it is open or blocked
 	private final int vtop;
 	private final int vbot;
+	private WeightedQuickUnionUF wquf;
 	
 	public static void main(String[] args) {
 		In in = new In(args[0]);      // input file
