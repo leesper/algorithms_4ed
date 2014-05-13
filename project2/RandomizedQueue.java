@@ -45,15 +45,20 @@ public class RandomizedQueue<Item> implements Iterable<Item>
 			throw new NoSuchElementException();
 		
 		int r = StdRandom.uniform(N);
-		Item random = arr[r];
-		arr[r] = arr[N - 1];
-		arr[N - 1] = random;
+		swap(r, N - 1);
 		
 		Item item = arr[--N];
-		arr[N] = null;
+		arr[N] = null; // avoid loitering
 		return item;
 	}
 	
+	private void swap(int i, int j)
+	{
+		Item temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+
 	/* 
 	 * Return (but not delete) a random item
 	 * Throws NoSuchElementException if empty
