@@ -25,7 +25,7 @@ public class Deque<Item> implements Iterable<Item>
 	/**
 	 *	Initialize an empty Deque
 	 */
-	public Deque() { N = 0; }           
+	public Deque() {}           
 	
 	public boolean isEmpty() { return 0 == N; }                 
 	
@@ -69,6 +69,9 @@ public class Deque<Item> implements Iterable<Item>
 	 */
 	public Item removeFirst() 
 	{
+		if (isEmpty())
+			throw new NoSuchElementException();
+		
 		Item item = first.item;
 		first = first.next;
 		N--;
@@ -82,6 +85,9 @@ public class Deque<Item> implements Iterable<Item>
 	 */
 	public Item removeLast() 
 	{
+		if (isEmpty())
+			throw new NoSuchElementException();
+
 		Item item = last.item;
 		last = last.prev;
 		N--;
@@ -113,18 +119,29 @@ public class Deque<Item> implements Iterable<Item>
 			return item;
 		}
 		
-		public void	remove() { /* Not supported */}
+		public void	remove() { throw new UnsupportedOperationException(); }
 	}
 	
 	public static void main(String[] args) {
 		Deque<String> dq = new Deque<String>();
 		StdOut.println(dq.isEmpty());
 		StdOut.println(dq.size());
+		
+		dq.addLast("Love");
 		dq.addLast("Computer");
 		dq.addLast("Program");
-		for (String s : dq)
-		{
-			StdOut.println(s);
-		}
+		StdOut.println(dq.size());
+		StdOut.println(dq.removeFirst());
+		StdOut.println(dq.removeFirst());
+		StdOut.println(dq.removeFirst());
+		
+		dq.addFirst("Love");
+		dq.addFirst("Computer");
+		dq.addFirst("Program");
+		StdOut.println(dq.removeLast());
+		StdOut.println(dq.removeLast());
+		StdOut.println(dq.removeLast());
+		StdOut.println(dq.size());
+		
 	}
 }

@@ -97,6 +97,9 @@ public class RandomizedQueue<Item> implements Iterable<Item>
 		
 		public Item next()
 		{
+			if (curr < 0)
+				throw new NoSuchElementException();
+			
 			return arr[index[curr--]];
 		}
 		
