@@ -11,11 +11,10 @@ import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> 
 {
-	
 	private Item[] arr = (Item[]) new Object[1];
 	private int N;
 	
-	public RandomizedQueue() {}
+	public RandomizedQueue() { }
 	
 	public boolean isEmpty() { return 0 == N; }
 	
@@ -49,6 +48,10 @@ public class RandomizedQueue<Item> implements Iterable<Item>
 		
 		Item item = arr[--N];
 		arr[N] = null; // avoid loitering
+		
+		if (N > 0 && N == arr.length / 4)
+			resize(arr.length / 2);
+			
 		return item;
 	}
 	
