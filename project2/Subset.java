@@ -6,7 +6,7 @@
  *  My solution to programming assignment 2 of "Algorithms"
  *----------------------------------------------------------------*/
 
-class Subset 
+public class Subset 
 {
 	public static void main(String[] args)
 	{
