@@ -1,4 +1,10 @@
-//import java.util.Stack;
+/*-----------------------------------------------------------------------------
+ *  Author:        Leesper
+ *  Written:       05/17/2014
+ *  Compilation:   javac Hanoi.java
+ *  Execution:     java Hanoi
+ *  My solution to Interview Question 3.4 of "Cracking The Coding Interview"
+ *---------------------------------------------------------------------------*/
 
 public class Hanoi
 {

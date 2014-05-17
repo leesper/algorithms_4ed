@@ -3,10 +3,11 @@
  *  Written:       05/13/2014
  *  Compilation:   javac SinglyLinkedList.java
  *  Execution:     java SinglyLinkedList
- *  My solution to Interview Question 2.1 of "Cracking The Coding Interview"
+ *  My solution to Interview Question 2.1, 2.2, 2.3 of "Cracking The Coding Interview"
  *---------------------------------------------------------------------------*/
 
 import java.util.NoSuchElementException;
+import java.security.InvalidParameterException;
 import java.util.Comparator;
 
 public class SinglyLinkedList<Item>
@@ -150,17 +151,73 @@ public class SinglyLinkedList<Item>
 		return last;
 	}
 	
+	/*
+	 * for 2.2 of Cracking The Coding Interview
+	 */
+	public Item kth2last(int k)
+	{
+		if (k < 1 || k > size())
+			throw new InvalidParameterException();
+		Node curr = pre.next;
+		Node ahead = pre.next;
+		for (int s = 0; s < k - 1; ++s)
+			ahead = ahead.next;
+		
+		while (ahead.next != null)
+		{
+			ahead = ahead.next;
+			curr = curr.next;
+		}
+			
+		return curr.item;
+	}
+	
+	/*
+	 * for 2.3 of Cracking The Coding Interview
+	 */
+	public void remove(Node node)
+	{
+		if (node == null)
+			throw new InvalidParameterException();
+		Node prev = null;
+		while (node.next != null)
+		{
+			node.item = node.next.item;
+			prev = node;
+			node = node.next;
+		}
+		prev.next = node.next;
+		--N;
+	}
+	
+	public void testRemove()
+	{
+		Node curr = pre.next;
+		while (curr.item.toString().compareTo("21") != 0)
+			curr = curr.next;
+		
+		remove(curr);
+		
+		curr = pre.next;
+		while (curr != null)
+		{
+			StdOut.println(curr.item);
+			curr = curr.next;
+		}
+	}
+	
 	public static void main(String[] args)
 	{
 		
 		SinglyLinkedList<Integer> sill = new SinglyLinkedList<Integer>();
+		sill.addFirst(20);
+		sill.addFirst(5);
+		sill.addFirst(3);
+		sill.addFirst(9);
 		sill.addFirst(21);
-		sill.addFirst(43);
-		sill.addFirst(41);
-		sill.addFirst(21);
-		sill.addFirst(12);
 		sill.addFirst(11);
-		sill.addFirst(12);
-		sill.removeDuplicates();
+		
+		StdOut.printf("The 3rd item to the last: %d\n", sill.kth2last(3));
+		
 	}
 }
