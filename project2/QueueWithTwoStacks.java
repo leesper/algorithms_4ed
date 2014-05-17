@@ -1,3 +1,11 @@
+/*----------------------------------------------------------------
+ *  Author:        Leesper
+ *  Written:       05/13/2014
+ *  Compilation:   javac QueueWithTwoStacks.java
+ *  Execution:     java QueueWithTwoStacks
+ *  My solution to web exercise 31 of "Algorithms"
+ *----------------------------------------------------------------*/
+
 import java.util.Stack;
 import java.util.NoSuchElementException;
 
