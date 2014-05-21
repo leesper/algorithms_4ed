@@ -97,19 +97,36 @@ Project2 - 基本数据结构 - 课后习题
 		beforeXXX维护的链表中，比x大的放入afterXXX维护的链表中，最后归并两个链表即可。
 
 ### [QueueWithTwoStacks.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/QueueWithTwoStacks.java)
+		解决什么问题：Algorithms，1.3节web练习31，用两个栈模拟队列，队列操作满足摊销的常量时间；
+		思路：维护一个inStack和outStack，当dequeue操作发生时，将inStack中元素全部压入outStack中，然后弹出，
+		当enqueue操作发生时，将元素压入inStack中；
 
 ### [SinglyLinkedList.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/SinglyLinkedList.java)
-		解决什么问题：CTCI面试题2.1，从一个无序的链表上删除重复元素；
+		解决什么问题：CTCI面试题2.1，2.2和2.3题，2.1题：从一个无序链表中删除重复元素；2.2题：求链表倒数第k个
+		结点；2.3题：在只知道链表中某结点指针的情况下删除该结点；
 		思路：
-		2.1题：若允许使用额外的临时缓冲区，则创建一个hash表，并从头遍历一遍链表，若第一次碰到就存入hash表中，
+		2.1题思路：若允许使用额外的临时缓冲区，则创建一个hash表，并从头遍历一遍链表，若第一次碰到就存入hash表中，
 		若不是第一次碰到就删除该元素（维护一个prev指针指向前一个元素），时间复杂度O(N)；2. 若不允许使用额外的
 		缓冲区，则归并排序该链表，然后遍历删除重复元素，时间复杂度O(nlogn)；
-		
+		2.1题策略：findMiddle()函数使用了龟兔指针法来确定链表中间结点，方法龟指针一次走一步，兔指针一次走两步，
+		兔指针走到最后一个结点时龟指针正好在链表中间，这也是常见的链表题；
+		2.2题思路：“龟兔指针”法，兔指针先走k-1步，然后两个指针一起走，兔指针走到链表最后一个结点时，龟指针即指向
+		倒数第k个结点，注意代码鲁棒性；
+		2.3题思路：从要被删除的结点开始遍历，将后面的结点值向前拷贝，最后删除最后一个结点即可；
 
 ### [StackSorter.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/StackSorter.java)
+		解决什么问题：CTCI面试题3.6，编写一个算法对栈进行排序，可以用额外的栈，但不允许将栈中元素拷贝到其他
+		数据结构中（比如数组）；
+		思路：创建两个临时栈tmpStk1和tmpStk2，将栈中元素e压入tmpStk1，若发现tmpStk1中原有元素小于e，则先弹出该
+		元素压入tmpStk2，将e压入tmpStk2，然后将tmpStk2元素全部压入tmpStk1，最后将tmpStk1中元素全部压入目标栈
 
 Project2 - 编程大作业 - Randomized Queues and Deques
 
+[Problem Specification](http://coursera.cs.princeton.edu/algs4/assignments/queues.html)
+
 1. [Deque.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Deque.java)
+
 2. [RandomizedQueue.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/RandomizedQueue.java)
+
 3. [Subset.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Subset.java)
+		解决什么问题：实现Deque和RandomizedQueue两种基本数据类型，熟悉链式实现和动态数组实现方式
