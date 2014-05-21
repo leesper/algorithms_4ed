@@ -22,7 +22,7 @@ Project1 - 动态连通性问题的并查集算法 - 课后习题
 		equals(), compareTo(), hashCode()；
 
 ### [Wget.java](https://github.com/leesper/algorithms_4ed/blob/master/project1/Wget.java)
-		解决什么问题：1.1节Web练习，编写一个简单的Wget程序，熟悉基本的第三方库
+		解决什么问题：《Algorithms》1.1节Web练习1，编写一个简单的Wget程序，熟悉基本的第三方库
 
 Project1 - 编程大作业 - Percolation
 ------------------------------------------------------
@@ -48,10 +48,28 @@ Project2 - 基本数据结构 - 课后习题
 ---------------------------------
 
 ### [AnimalQueue.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/AnimalQueue.java)
-		解决什么问题：“Cracking the Coding Interview”（以下简称CTCI）面试题3.7，让实现一个队列，队列中可存放猫和狗两种动物，要求实现enqueue(), dequeueAny(), dequeueCat()和dequeueDog()等操作；
+		解决什么问题：“Cracking the Coding Interview”（以下简称CTCI）面试题3.7，让实现一个队列，队列中可
+		存放猫和狗两种动物，要求实现enqueue(), dequeueAny(), dequeueCat()和dequeueDog()等操作；
 		思路：编写一个Animal类，让Cat和Dog继承之，AnimalQueue维护一个队列
+
 ### [DigitAdder.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/DigitAdder.java)
+		解决什么问题：CTCI面试题2.5，将两个用链表表示的数相加并返回所求和；
+		思路：从数的低位到高位逆向存储，比如617，表示为7->1->6，遍历两个链表，按位相加再加上借位carry生成
+		结果链表，最后将较长链表的剩余部分链入结果链表即可；
+		策略：carry = sum / 10; sum = sum % 10;
+
 ### [DoublyLinkedList.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/DoublyLinkedList.java)
+		解决什么问题：《Algorithms》1.3节web练习21，实现一个双链表，并在此基础上提供一个可正向和反向迭代，并
+		可以添加，删除和覆盖结点的迭代器，熟悉iterator设计模式；
+		思路：提供addFirst(), addLast(), removeFirst()和removeLast()四个主要功能，然后实现一个ListIterator，
+		提供正向迭代（hasNext(), next(), nextIndex()），反向迭代（hasPrevious(), previous(), 
+		previousIndex()）和add(), remove()以及set()功能；
+		策略：使用链表数据结构中经典的“dummy pattern”，用pre和post分别代表两个“伪结点”，pre在第一个结点之前，
+		post在最后一个结点之后，每个结点有prev和next指针，这样可以避免考虑额外情况，提高代码鲁棒性，具体编写
+		链表操作时要注意对每个结点的prev和next指针进行维护，并考虑极端情况（链表为空）；迭代器的实现中，我们
+		用lastAccessed变量表示最近一次next()和previous()访问过的结点，nextIndex变量表示下一次next()调用将要
+		访问的结点，然后围绕lastAccessed编写添加，删除和设置操作。
+
 ### [FindCircular.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/FindCircular.java)
 ### [Hanoi.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Hanoi.java)
 ### [Parentheses.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Parentheses.java)
