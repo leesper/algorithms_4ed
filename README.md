@@ -129,4 +129,5 @@ Project2 - 编程大作业 - Randomized Queues and Deques
 2. [RandomizedQueue.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/RandomizedQueue.java)
 
 3. [Subset.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Subset.java)
-		解决什么问题：实现Deque和RandomizedQueue两种基本数据类型，熟悉链式实现和动态数组实现方式
+		解决什么问题：实现Deque和RandomizedQueue两种基本数据类型，熟悉链式实现和动态数组实现方式，然后实现一个
+		Subset程序，传入参数k，然后随机地从标准输入中读k个值。
