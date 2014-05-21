@@ -43,3 +43,25 @@ Project1 - 编程大作业 - Percolation
 		检查顶部网格和底部网格，O(N^2)；2. 通过一个函数xyTo1D来将二维网格矩阵映射到一维数组是一个重要技巧，
 		因为并查集算法中的数据结构就是一个一维数组；3. Monte-Carlo模拟法估算阀值：渗滤系统导通时导通网格所
 		占比例为对该阀值的一次估计，重复N次得到N个估计，其样本平均值为对该阀值的概率估计。
+
+Project2 - 基本数据结构 - 课后习题
+---------------------------------
+
+### [AnimalQueue.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/AnimalQueue.java)
+		解决什么问题：“Cracking the Coding Interview”（以下简称CTCI）面试题3.7，让实现一个队列，队列中可存放猫和狗两种动物，要求实现enqueue(), dequeueAny(), dequeueCat()和dequeueDog()等操作；
+		思路：编写一个Animal类，让Cat和Dog继承之，AnimalQueue维护一个队列
+### [DigitAdder.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/DigitAdder.java)
+### [DoublyLinkedList.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/DoublyLinkedList.java)
+### [FindCircular.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/FindCircular.java)
+### [Hanoi.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Hanoi.java)
+### [Parentheses.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Parentheses.java)
+### [PartitionSolver.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/PartitionSolver.java)
+### [QueueWithTwoStacks.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/QueueWithTwoStacks.java)
+### [SinglyLinkedList.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/SinglyLinkedList.java)
+### [StackSorter.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/StackSorter.java)
+
+Project2 - 编程大作业 - Randomized Queues and Deques
+
+1. [Deque.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Deque.java)
+2. [RandomizedQueue.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/RandomizedQueue.java)
+3. [Subset.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Subset.java)
