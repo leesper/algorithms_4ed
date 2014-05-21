@@ -22,7 +22,7 @@ Project1 - 动态连通性问题的并查集算法 - 课后习题
 		equals(), compareTo(), hashCode()；
 
 ### [Wget.java](https://github.com/leesper/algorithms_4ed/blob/master/project1/Wget.java)
-		解决什么问题：《Algorithms》1.1节Web练习1，编写一个简单的Wget程序，熟悉基本的第三方库
+		解决什么问题：Algorithms，1.1节Web练习1，编写一个简单的Wget程序，熟悉基本的第三方库
 
 Project1 - 编程大作业 - Percolation
 ------------------------------------------------------
@@ -50,16 +50,18 @@ Project2 - 基本数据结构 - 课后习题
 ### [AnimalQueue.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/AnimalQueue.java)
 		解决什么问题：“Cracking the Coding Interview”（以下简称CTCI）面试题3.7，让实现一个队列，队列中可
 		存放猫和狗两种动物，要求实现enqueue(), dequeueAny(), dequeueCat()和dequeueDog()等操作；
-		思路：编写一个Animal类，让Cat和Dog继承之，AnimalQueue维护一个队列
+		思路：编写一个Animal类，让Cat和Dog继承之，AnimalQueue维护一个队列；
+		书上的解答思路：使用两个链表，Dog链表和Cat链表，每个结点维护一个order变量，表示进入队列的先后次序，
+		order较小的那个更早进入队列。
 
 ### [DigitAdder.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/DigitAdder.java)
 		解决什么问题：CTCI面试题2.5，将两个用链表表示的数相加并返回所求和；
 		思路：从数的低位到高位逆向存储，比如617，表示为7->1->6，遍历两个链表，按位相加再加上借位carry生成
 		结果链表，最后将较长链表的剩余部分链入结果链表即可；
-		策略：carry = sum / 10; sum = sum % 10;
+		策略：carry = sum / 10; sum = sum % 10。
 
 ### [DoublyLinkedList.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/DoublyLinkedList.java)
-		解决什么问题：《Algorithms》1.3节web练习21，实现一个双链表，并在此基础上提供一个可正向和反向迭代，并
+		解决什么问题：Algorithms，1.3节web练习21，实现一个双链表，并在此基础上提供一个可正向和反向迭代，并
 		可以添加，删除和覆盖结点的迭代器，熟悉iterator设计模式；
 		思路：提供addFirst(), addLast(), removeFirst()和removeLast()四个主要功能，然后实现一个ListIterator，
 		提供正向迭代（hasNext(), next(), nextIndex()），反向迭代（hasPrevious(), previous(), 
@@ -71,11 +73,39 @@ Project2 - 基本数据结构 - 课后习题
 		访问的结点，然后围绕lastAccessed编写添加，删除和设置操作。
 
 ### [FindCircular.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/FindCircular.java)
+		解决什么问题：CTCI面试题2.6，判断一个链表中是否有环，且找出环的头结点；
+		思路：链表类问题的经典“龟兔指针”法，从头结点开始，龟指针一次走一步，兔指针一次走两步，若龟兔再次遇上，
+		说明链表有环，然后用一个指针从这个相遇的结点开始走，另一个指针从头结点开始走，两个指针每次一步，最后再次
+		相遇的那个结点就是链表环的头结点。
+				
 ### [Hanoi.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Hanoi.java)
+		解决什么问题：CTCI面试题3.4，不用递归，模拟求解汉诺塔游戏的步骤；
+		思路：既然不能用递归，那么本质上是用栈来模拟递归的过程，先编写一个递归版本的汉诺塔程序，观察发现
+		只要倒着将递归算法的过程参数做压栈处理即可，每次从堆栈中弹出参数，发现参数不是基本情况，就按照归纳情况
+		分解，然后倒着压入堆栈，若发现参数满足基本情况，则打印，栈清空后程序结束。
+
 ### [Parentheses.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/Parentheses.java)
+		解决什么问题：Algorithms，1.3节习题1.3.4，判断括号是否匹配；
+		思路：遇到左括号就压栈，遇到右括号就弹出栈顶元素，然后判断二者是否匹配。
+
 ### [PartitionSolver.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/PartitionSolver.java)
+		解决什么问题：CTCI面试题2.4，对链表进行分区，传入参数x，比x小的放前面，比x大的放后面；
+		思路：检查x是否存在于链表中，若不存在抛出异常，否则交换x与头结点的值，从第二个结点开始遍历，将比x小的
+		结点删除然后头插入链表（现在看来这个算法实现的有问题，首先题目并没有说x一定要存在于链表中，其次，该方法
+		没有书上标准解答来的优雅）；
+		书上的解题思路：维护四个指针beforeStart, beforeEnd, afterStart, afterEnd，遍历链表，将比x小的放入
+		beforeXXX维护的链表中，比x大的放入afterXXX维护的链表中，最后归并两个链表即可。
+
 ### [QueueWithTwoStacks.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/QueueWithTwoStacks.java)
+
 ### [SinglyLinkedList.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/SinglyLinkedList.java)
+		解决什么问题：CTCI面试题2.1，从一个无序的链表上删除重复元素；
+		思路：
+		2.1题：若允许使用额外的临时缓冲区，则创建一个hash表，并从头遍历一遍链表，若第一次碰到就存入hash表中，
+		若不是第一次碰到就删除该元素（维护一个prev指针指向前一个元素），时间复杂度O(N)；2. 若不允许使用额外的
+		缓冲区，则归并排序该链表，然后遍历删除重复元素，时间复杂度O(nlogn)；
+		
+
 ### [StackSorter.java](https://github.com/leesper/algorithms_4ed/blob/master/project2/StackSorter.java)
 
 Project2 - 编程大作业 - Randomized Queues and Deques
