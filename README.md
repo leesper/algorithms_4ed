@@ -6,8 +6,8 @@ algorithms_4ed --- MOOC Coursera，Robert Sedgewick教授的“算法”公开�
 Project1 - 动态连通性问题的并查集算法 - 课后习题
 ----------------------------------------------
 
-### Binomial.java
-		解决什么问题：原基于递归的算法效率不高，采用动态规划的方法设计一个更的算法
+### [Binomial.java](https://github.com/leesper/algorithms_4ed/blob/master/project1/Binomial.java)
+		解决什么问题：习题1.1.27，原基于递归的算法效率不高，采用动态规划的方法设计一个更的算法
 		思路：memoization，将第一次计算的值存入表中，用查表代替计算
 		策略：calculated[][]初始化为浮点数最大值（无穷大），计算过程中每次先查表，若已计算过，则直接返回，
 		若没有计算过，则先将计算得到的值写入表中，然后再返回。
