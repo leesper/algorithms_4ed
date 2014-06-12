@@ -64,18 +64,143 @@ public class Board {
     			}
     			int diff = Math.abs(posi - i) + Math.abs(posj - j);
     			count += diff;
-    			StdOut.printf("%d -> (%d, %d) - (%d, %d) = %d\n", 
-    					tiles[i][j], posi, posj, i, j, diff);
     		}
     	return count;
     }
     
-    /*
-    public boolean isGoal()                // is this board the goal board?
-    public Board twin()                    // a board obtained by exchanging two adjacent blocks in the same row
-    public boolean equals(Object y)        // does this board equal y?
-    public Iterable<Board> neighbors()     // all neighboring boards
-    */
+    public boolean isGoal()
+    {
+    	return hamming() == 0;
+    }
+    
+    public Board twin()
+    {
+    	int[][] tw = new int[N][N];
+    	int zeroi = 0;
+    	int zeroj = 0;
+    	for (int i = 0; i < tiles.length; i++)
+    		for (int j = 0; j < tiles[i].length; j++)
+    		{
+    			tw[i][j] = tiles[i][j];
+    			if (0 == tiles[i][j])
+    			{
+    				zeroi = i;
+    				zeroj = j;
+    			}
+    		}
+    	
+    	// assume that (ri, rj) != 0 and (ri, rj+1) != 0
+    	int ri = StdRandom.uniform(N);
+    	int rj = StdRandom.uniform(N);
+    	while (rj == N - 1 || ri == zeroi && rj == zeroj || ri == zeroi && rj + 1 == zeroj)
+    	{
+    		ri = StdRandom.uniform(N);
+    		rj = StdRandom.uniform(N);
+    	}
+    	int t = tw[ri][rj];
+    	tw[ri][rj] = tw[ri][rj+1];
+    	tw[ri][rj+1] = t;
+    	
+    	Board twined = new Board(tw);
+    	return twined;
+    }
+    
+    public boolean equals(Object y)
+    {
+    	if (y == this) return true;
+    	if (y == null) return false;
+    	if (y.getClass() != this.getClass()) return false;
+    	Board that = (Board) y;
+    	if (N != that.N) return false;
+    	for (int i = 0; i < tiles.length; i++)
+    		for (int j = 0; j < tiles[i].length; j++)
+    			if (tiles[i][j] != that.tiles[i][j])
+    				return false;
+    	return true;
+    }
+    
+    public Iterable<Board> neighbors()
+    {
+    	int zeroi = 0;
+    	int zeroj = 0;
+    	int[][] dup = new int[N][N];
+    	for (int i = 0; i < tiles.length; i++)
+    		for (int j = 0; j < tiles[i].length; j++)
+    		{
+    			if (tiles[i][j] == 0)
+    			{
+    				zeroi = i;
+    				zeroj = j;
+    			}
+    			dup[i][j] = tiles[i][j];
+    		}
+    	
+    	int stepi;
+    	int stepj;
+    	Queue<Board> q = new Queue<Board>();
+    	
+    	// up
+    	stepi = zeroi - 1;
+    	stepj = zeroj;
+    	if (valid(stepi, stepj))
+    	{
+    		exch(dup, zeroi, zeroj, stepi, stepj);
+    		Board b = new Board(dup);
+    		q.enqueue(b);
+    		// recover
+    		exch(dup, zeroi, zeroj, stepi, stepj);
+    	}
+    	
+    	// down
+    	stepi = zeroi + 1;
+    	stepj = zeroj;
+    	if (valid(stepi, stepj))
+    	{
+    		exch(dup, zeroi, zeroj, stepi, stepj);
+    		Board b = new Board(dup);
+    		q.enqueue(b);
+    		// recover
+    		exch(dup, zeroi, zeroj, stepi, stepj);
+    	}
+    	
+    	// left
+    	stepi = zeroi;
+    	stepj = zeroj - 1;
+    	if (valid(stepi, stepj))
+    	{
+    		exch(dup, zeroi, zeroj, stepi, stepj);
+    		Board b = new Board(dup);
+    		q.enqueue(b);
+    		// recover
+    		exch(dup, zeroi, zeroj, stepi, stepj);
+    	}
+    	
+    	// right
+    	stepi = zeroi;
+    	stepj = zeroj + 1;
+    	if (valid(stepi, stepj))
+    	{
+    		exch(dup, zeroi, zeroj, stepi, stepj);
+    		Board b = new Board(dup);
+    		q.enqueue(b);
+    		// recover
+    		exch(dup, zeroi, zeroj, stepi, stepj);
+    	}
+    	
+    	return q;
+    }
+    
+    private boolean valid(int i, int j)
+    {
+    	return i >= 0 && i < N && j >= 0 && j < N; 
+    }
+    
+    private void exch(int[][] a, int i, int j, int m, int n)
+    {
+    	int t = a[i][j];
+    	a[i][j] = a[m][n];
+    	a[m][n] = t;
+    }
     
     public String toString()      
     {
@@ -97,10 +222,25 @@ public class Board {
     		{4, 0, 2},
     		{7, 6, 5}
     	};
+    	int[][] fblocks = {
+    		{1, 2, 3},
+    		{4, 5, 6},
+    		{7, 8, 0}
+    	};
+    	
     	Board b = new Board(blocks);
+    	Board b2 = new Board(blocks);
+    	Board g = new Board(fblocks);
     	StdOut.printf("dimensions: %d\n", b.dimension());
     	StdOut.printf("hamming: %d\n", b.hamming());
     	StdOut.printf("manhattan: %d\n", b.manhattan());
     	StdOut.printf("Board: %s\n", b.toString());
+    	StdOut.printf("twin: %s\n", b.twin().toString());
+    	StdOut.printf("is goal: %b\n", b.isGoal());
+    	StdOut.printf("is goal: %b\n", g.isGoal());
+    	StdOut.printf("b equals g? %b\n", b.equals(g));
+    	StdOut.printf("b equals b2? %b\n", b.equals(b2));
+    	for(Board n : b.neighbors())
+    		StdOut.println(n);
     }
 }
