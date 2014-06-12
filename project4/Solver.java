@@ -51,7 +51,7 @@ public class Solver {
     		
     		// test if we have reached the goal
     		if (t.board.manhattan() == 0)	break;
-    		
+
     		if (n.board.manhattan() == 0)
     		{
     			// rebuild the solutions
@@ -72,11 +72,11 @@ public class Solver {
     		
     		// putting neighbors into queues
     		for (Board nbr : n.board.neighbors())
-    			if (n.previous != null && !n.previous.board.equals(nbr))
+    			if (n.previous == null || !n.previous.board.equals(nbr))
     				nq.insert(new SNode(nbr, 1, n));
     			
     		for (Board tbr : t.board.neighbors())
-    			if (t.previous != null && !t.previous.board.equals(tbr))
+    			if (t.previous == null || !t.previous.board.equals(tbr))
     				tq.insert(new SNode(tbr, 1, t));
     		
     	}
