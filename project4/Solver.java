@@ -73,11 +73,11 @@ public class Solver {
     		// putting neighbors into queues
     		for (Board nbr : n.board.neighbors())
     			if (n.previous == null || !n.previous.board.equals(nbr))
-    				nq.insert(new SNode(nbr, 1, n));
+    				nq.insert(new SNode(nbr, n.moves + 1, n));
     			
     		for (Board tbr : t.board.neighbors())
     			if (t.previous == null || !t.previous.board.equals(tbr))
-    				tq.insert(new SNode(tbr, 1, t));
+    				tq.insert(new SNode(tbr, t.moves + 1, t));
     		
     	}
     }
