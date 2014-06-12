@@ -89,7 +89,6 @@ public class Board {
     			}
     		}
     	
-    	// assume that (ri, rj) != 0 and (ri, rj+1) != 0
     	int ri = StdRandom.uniform(N);
     	int rj = StdRandom.uniform(N);
     	while (rj == N - 1 || ri == zeroi && rj == zeroj || ri == zeroi && rj + 1 == zeroj)
@@ -224,7 +223,7 @@ public class Board {
     	};
     	int[][] fblocks = {
     		{1, 2, 3},
-    		{4, 5, 6},
+    		{4, 6, 5},
     		{7, 8, 0}
     	};
     	
@@ -240,7 +239,7 @@ public class Board {
     	StdOut.printf("is goal: %b\n", g.isGoal());
     	StdOut.printf("b equals g? %b\n", b.equals(g));
     	StdOut.printf("b equals b2? %b\n", b.equals(b2));
-    	for(Board n : b.neighbors())
+    	for(Board n : g.neighbors())
     		StdOut.println(n);
     }
 }
