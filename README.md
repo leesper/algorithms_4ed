@@ -133,3 +133,28 @@ Project2 - 编程大作业 - Randomized Queues and Deques
 
 		解决什么问题：实现Deque和RandomizedQueue两种基本数据类型，熟悉链式实现和动态数组实现方式，然后实现一个
 		Subset程序，传入参数k，然后随机地从标准输入中读k个值。
+
+Project3 - 编程大作业 - Pattern Recognition
+---------------------------------------------
+
+[Problem Specification](http://coursera.cs.princeton.edu/algs4/assignments/collinear.html)
+
+1. [Brute.java](https://github.com/leesper/algorithms_4ed/blob/master/project3/Brute.java)
+
+2. [Fast.java](https://github.com/leesper/algorithms_4ed/blob/master/project3/Fast.java)
+
+3. [Point.java](https://github.com/leesper/algorithms_4ed/blob/master/project3/Point.java)
+
+		解决什么问题：模式识别，给定一个点集，从该点集中识别出在一条直线上的点。
+
+Project4 - 编程大作业 - 8 Puzzle
+-------------------------------------
+
+[Problem Specification](http://coursera.cs.princeton.edu/algs4/assignments/8puzzle.html)
+
+1. [Board.java](https://github.com/leesper/algorithms_4ed/blob/master/project4/Board.java)
+
+2. [Solver.java](https://github.com/leesper/algorithms_4ed/blob/master/project4/Solver.java)
+
+		解决什么问题：用人工智能中的A*搜索算法求出8Puzzle谜题的最优解，是优先级队列的实际应用范例。
+
